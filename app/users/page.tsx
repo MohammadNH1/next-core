@@ -1,45 +1,9 @@
 import React from "react";
 import { revalidatePath } from "next/cache";
 import UserList from "@/components/UserList";
+import { createUsers, getUsers } from "@/action/api";
+export const dynamic = "force-dynamic"; 
 
-const getUsers = async () => {
-  try {
-    const response = await fetch("http://localhost:3000/api/users");
-    if (!response.ok) {
-      throw new Error("Error fetching users!");
-    }
-    return await response.json();
-  } catch (error) {
-    console.log("error", error);
-    throw error;
-  }
-};
-
-const createUsers = async () => {
-  const data = {
-    id: Math.random() * 10,
-    name: "Habib",
-  };
-  try {
-    const response = await fetch("http://localhost:3000/api/users", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-
-    if (!response.ok) {
-      throw new Error("Error creating users");
-    }
-
-    const result = await response.json();
-    return result;
-  } catch (error) {
-    console.log("error", error);
-    throw error;
-  }
-};
 const page = async () => {
   const data = await getUsers();
   //console.log("data", data);

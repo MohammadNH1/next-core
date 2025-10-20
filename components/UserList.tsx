@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import {deleteUser} from '../action/api'
 type UserListProps = {
   users: {
-    id: number;
+    id: string;
     name: string;
   }[];
 };
@@ -14,11 +14,11 @@ type UserListProps = {
 
 const UserList = ({ users }: UserListProps) => {
   const router = useRouter();
-  const handleClick = (userId: number) => {
+  const handleClick = (userId: string) => {
     router.push(`/users/${userId}`);
   };
 
-  const handleDelete = async (userId:number)=>{
+  const handleDelete = async (userId:string)=>{
     console.log('handleDelte click')
   const  data = await deleteUser(userId)
  

@@ -1,23 +1,13 @@
+import { getUser } from '@/action/api';
 import React from 'react'
 
 type pageProps = {
     params:{
-        id:number;
+        id:string;
     }
 }
 
-const getUser = async(userId:number)=>{
-    try {
-        const response = await fetch(`http//:localhost:3000/api/users/${userId}`)
-        if(!response.ok) throw new Error('Error fetching user')
-            const result = await response.json();
-        return result;
-    } catch (error) {
-        console.log('error',error);
-        throw error;
-        
-    }
-}
+
 
 const page = async({params}:pageProps) => {
    const {id} = await params;
